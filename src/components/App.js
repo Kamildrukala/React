@@ -6,17 +6,35 @@ import {
 } from "react-router-dom";
 import News from './News';
 import Menu from './Menu';
+import Home from './pages/Home'
+import Content from './Content'
 
-export default function App() {
-  return (
-    <Router>
-        <Menu />
+export default class App extends React.Component {
+  state = {
+    zeznania: []
+  }
 
-        <Switch>
-          <Route path="/news">
-            <News />
-          </Route>
-        </Switch>
+  addZeznanie = (zeznanie) => {
+    this.setState({ zeznania: [...this.state.zeznania, zeznanie] })
+  }
+
+  render() {
+    return <Router>
+      <Menu />
+
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+
+        <Route path="/news">
+          <News zeznania={this.state.zeznania} />
+        </Route>
+
+        <Route path="/form">
+          <Content addZeznanie={this.addZeznanie} />
+        </Route>
+      </Switch>
     </Router>
-  );
+  }
 }
