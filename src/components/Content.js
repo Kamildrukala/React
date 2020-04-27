@@ -17,6 +17,18 @@ class Content extends Component {
   dodajZeznanie = (e) => {
     e.preventDefault()
 
+    if (this.state.imie === '') {
+      alert('uzupelnij pole imie')
+    }
+
+    if (this.state.nazwisko === '') {
+      alert('uzupelnij pole nazwisko')
+    }
+
+    if (this.state.zeznanie === '') {
+      alert('podaj tresc zeznania')
+    }
+
     if (this.state.permissionGranted) {
       this.props.addZeznanie({
         kto: [this.state.imie, this.state.nazwisko].join(' '),
