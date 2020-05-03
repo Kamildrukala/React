@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 
 function News(props) {
   return (
@@ -8,13 +9,14 @@ function News(props) {
       </h1>
       <div>
         { props.zeznania && props.zeznania.map((zeznanie) => {
-          return <div>
+          return <Link to={`/news/${zeznanie.id}`} key={zeznanie.id}>
             <b>
               {zeznanie.kto}
               :
             </b>
             {zeznanie.zeznanie}
-          </div>
+            <br />
+          </Link>
         }) }
       </div>
     </div>

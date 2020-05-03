@@ -45,7 +45,7 @@ class Content extends Component {
           </div>
           <div className="field">
             <div className="ui checkbox" onClick={() => this.setState({ permissionGranted: !this.state.permissionGranted })}>
-              <input type="checkbox" tabindex="0" className="hidden" checked={this.state.permissionGranted} />
+              <input type="checkbox" tabIndex="0" className="hidden" checked={this.state.permissionGranted} />
               <label>Akceptuję wszystkie warunki współpracy</label>
             </div>
           </div>
