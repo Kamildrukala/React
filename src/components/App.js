@@ -13,13 +13,22 @@ import Zeznanie from './pages/zeznanie'
 export default class App extends React.Component {
   state = {
     zeznania: [
-      { id: '1', kto: 'a bbbb', zeznanie: 'c'},
-      { id: '2', kto: 'adasdasd nnasdasd', zeznanie: 'ccccasa'}
+      { id: '1', kto: 'a bbbb', zeznanie: 'c', comments: [] },
+      { id: '2', kto: 'adasdasd nnasdasd', zeznanie: 'ccccasa', comments: [] }
     ]
   }
 
   addZeznanie = (zeznanie) => {
     this.setState({ zeznania: [...this.state.zeznania, zeznanie] })
+  }
+
+  addComment = (id, comment) => {
+    const { zeznania } = this.state
+    const zeznanieIndex = zeznania.findIndex((zeznanie) => zeznanie.id === id)
+    let noweZeznanie = zeznania[zeznanieIndex]
+
+    noweZeznanie.comments.push(comment)
+    this.setState({ zeznania: [...zeznania.slice(0, zeznanieIndex), noweZeznanie, ...zeznania.slice(zeznanieIndex + 1, zeznania.length )] })
   }
 
   render() {
@@ -32,7 +41,10 @@ export default class App extends React.Component {
         </Route>
 
         <Route path='/news/:id'>
-          <Zeznanie zeznania={this.state.zeznania} />
+          <Zeznanie
+            zeznania={this.state.zeznania}
+            addComment={this.addComment}
+          />
         </Route>
 
         <Route path="/news">
