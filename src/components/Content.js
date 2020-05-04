@@ -8,25 +8,11 @@ class Content extends Component {
     permissionGranted: false
   }
 
-  // TODO
-  // dodaj validacje  jesli imie jest puste
-  // dodaj validacje  jesli nazwisko jest puste
-  // dodaj validacje  jesli zeznanie jest puste
-  // dodaj klase disabled jesli permission jest false
-
   dodajZeznanie = (e) => {
     e.preventDefault()
 
-    if (this.state.imie === '') {
-      alert('uzupelnij pole imie')
-    }
-
-    if (this.state.nazwisko === '') {
-      alert('uzupelnij pole nazwisko')
-    }
-
-    if (this.state.zeznanie === '') {
-      alert('podaj tresc zeznania')
+    if (this.state.imie === '' || this.state.nazwisko === '' || this.state.zeznanie === '') {
+      alert('uzupelnij brakujace pole')
     }
 
     if (this.state.permissionGranted) {
@@ -34,6 +20,14 @@ class Content extends Component {
         kto: [this.state.imie, this.state.nazwisko].join(' '),
         zeznanie: this.state.zeznanie
       })
+
+      this.setState({
+        imie: '',
+        nazwisko: '',
+        zeznanie: '',
+        permissionGranted: false
+      })
+      
     } else {
       alert('zaznacz zgode')
     }
