@@ -2,11 +2,7 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import { render } from '@testing-library/react';
 
-export default function Menu() {
-  // TODO
-  // dodaj wyswietlanie liczby w tym komponencie ile jest aktualnie zeznan 
-  // zeznania.length
-
+export default function Menu(props) {
   return (
     <nav>
       <ul>
@@ -14,7 +10,9 @@ export default function Menu() {
           <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="/news">News</Link>
+          <Link to="/news">
+            {`News (${props.zeznania.length})`}
+          </Link>
         </li>
         <li>
           <Link to="/form">Form</Link>
